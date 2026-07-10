@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KKN Desa Gondowangi | Roots of Harmony</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<style>
+body{
+margin:0;
+font-family:'Poppins',sans-serif;
+background:#f5ead6;
+color:#3b281b;
+}
+.hero{
+min-height:100vh;
+background:
+linear-gradient(rgba(35,50,25,.55),rgba(35,50,25,.4)),
+radial-gradient(circle at top,#d9bd75,#68734b);
+display:flex;
+align-items:center;
+justify-content:center;
+color:white;
+text-align:center;
+overflow:hidden;
+}
+.logo{
+width:min(360px,75vw);
+border-radius:50%;
+box-shadow:0 30px 80px rgba(0,0,0,.5);
+animation:float 4s infinite ease-in-out;
+}
+@keyframes float{
+50%{transform:translateY(-15px)}
+}
+.section{
+padding:80px 8%;
+}
+.glass{
+background:rgba(255,255,255,.75);
+backdrop-filter:blur(15px);
+border-radius:28px;
+padding:30px;
+box-shadow:0 20px 50px rgba(0,0,0,.12);
+}
+.music{
+position:fixed;
+right:25px;
+bottom:25px;
+z-index:20;
+background:#b98a35;
+color:white;
+padding:15px 25px;
+border-radius:40px;
+border:0;
+cursor:pointer;
+}
+</style>
+</head>
+<body>
+
+<audio id="bgMusic" loop>
+<source src="assets/audio/gamelan-jawa.mp3" type="audio/mpeg">
+</audio>
+
+<button class="music" id="musicBtn">🎵 Putar Suasana Jawa</button>
+
+<section class="hero" style="display:flex; align-items:center; justify-content:center; text-align:center;">
+<div id="hero" style="display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
+<img class="logo" style="display:block; margin:0 auto;" src="assets/logo-gondowangi.jpg">
+<h1 class="text-5xl font-bold mt-8">KKN DESA GONDOWANGI</h1>
+<p class="text-3xl mt-4">Roots of Harmony</p>
+<p class="mt-4">Culture • Nature • Community • Legacy</p>
+
+<a href="assets/logo-gondowangi.jpg" target="_blank"
+style="
+display:inline-block;
+margin-top:25px;
+padding:14px 28px;
+border-radius:40px;
+background:#d1a14b;
+color:white;
+text-decoration:none;
+font-weight:bold;
+box-shadow:0 10px 30px rgba(0,0,0,.25);
+">
+⬇ Buka & Unduh Logo
+</a>
+
+</div>
+</section>
+
+<section class="section">
+<h2 class="text-5xl font-bold mb-10">Filosofi Logo</h2>
+
+<div class="space-y-6">
+<div class="glass">
+<h3 class="text-2xl font-bold">🎭 Wayang Krucil Wiloso</h3>
+<p>Menjadi jiwa budaya Gondowangi yang menggambarkan warisan leluhur, nilai kehidupan, kebijaksanaan, serta identitas masyarakat yang tetap hidup dan diwariskan kepada generasi berikutnya.</p>
+</div>
+
+<div class="glass">
+<h3 class="text-2xl font-bold">⛰️ Gunung Katu</h3>
+<p>Melambangkan kekuatan alam, keteguhan, dan hubungan harmonis antara manusia dengan lingkungan. Penyatuan gunung dengan wayang menunjukkan bahwa budaya dan alam merupakan satu kesatuan.</p>
+</div>
+
+<div class="glass">
+<h3 class="text-2xl font-bold">🌱 Akar Budaya</h3>
+<p>Menggambarkan sejarah, tradisi, dan fondasi leluhur. Akar menjadi simbol bahwa setiap perubahan harus tumbuh dari nilai lokal yang kuat.</p>
+</div>
+
+<div class="glass">
+<h3 class="text-2xl font-bold">🤝 Gotong Royong</h3>
+<p>Menggambarkan kolaborasi mahasiswa KKN dan masyarakat dalam menciptakan perubahan melalui kebersamaan dan kepedulian.</p>
+</div>
+
+<div class="glass">
+<h3 class="text-2xl font-bold">🌸 Gondowangi</h3>
+<p>Aroma bunga melambangkan keharuman kebaikan, ilmu, dan manfaat yang diharapkan menyebar luas dari kegiatan KKN.</p>
+</div>
+</div>
+</section>
+
+<script>
+gsap.from("#hero",{opacity:0,y:80,duration:2});
+
+const audio=document.getElementById("bgMusic");
+const btn=document.getElementById("musicBtn");
+let playing=false;
+
+async function startMusic(){
+ try{
+   audio.volume=0;
+   await audio.play();
+   let v=0;
+   const fade=setInterval(()=>{
+     v+=0.05;
+     audio.volume=Math.min(v,0.6);
+     if(v>=0.6) clearInterval(fade);
+   },100);
+   playing=true;
+   btn.innerHTML="⏸ Pause Suasana Jawa";
+ }catch(e){}
+}
+
+btn.onclick=()=>{
+ if(playing){
+   audio.pause();
+   playing=false;
+   btn.innerHTML="🎵 Putar Suasana Jawa";
+ }else{
+   startMusic();
+ }
+};
+
+// autoplay attempt + fallback after interaction
+window.addEventListener("load",()=>startMusic());
+document.addEventListener("click",()=>{if(!playing)startMusic()},{once:true});
+</script>
+
+
+<script>
+const bgMusic = document.getElementById("bgMusic");
+const musicBtn = document.getElementById("musicBtn");
+
+function startBackgroundMusic(){
+    if(!bgMusic) return;
+
+    bgMusic.volume = 0;
+    bgMusic.play().then(()=>{
+        let volume = 0;
+        const fade = setInterval(()=>{
+            volume += 0.05;
+            bgMusic.volume = Math.min(volume, 0.5);
+            if(volume >= 0.5) clearInterval(fade);
+        },150);
+
+        if(musicBtn){
+            musicBtn.innerHTML = "⏸ Pause Musik Jawa";
+        }
+    }).catch(()=>{
+        // Browser blocks autoplay until user interaction
+    });
+}
+
+if(bgMusic){
+    window.addEventListener("load", startBackgroundMusic);
+
+    document.addEventListener("click", function(){
+        if(bgMusic.paused){
+            startBackgroundMusic();
+        }
+    }, {once:true});
+}
+
+if(musicBtn){
+    musicBtn.onclick = function(){
+        if(bgMusic.paused){
+            startBackgroundMusic();
+        }else{
+            bgMusic.pause();
+            musicBtn.innerHTML="🎵 Putar Musik Jawa";
+        }
+    }
+}
+</script>
+
+</body>
+</html>
