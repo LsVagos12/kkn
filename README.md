@@ -1,8 +1,9 @@
+
 # 🌿 KKN DESA GONDOWANGI  
 ## Roots of Harmony
 
 <p align="center">
-  <img src="assets/logo-gondowangi.jng" width="250">
+<p align="center"> <img width="240" height="240" alt="logo-gondowangi" src="https://github.com/user-attachments/assets/0cc62476-c91d-4ee3-9ebd-426159a17b33" />
 </p>
 
 <p align="center">
