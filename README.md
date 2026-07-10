@@ -2,7 +2,7 @@
 ## Roots of Harmony
 
 <p align="center">
-  <img src="assets/logo-gondowangi.png" width="250">
+  <img src="assets/logo-gondowangi.jng" width="250">
 </p>
 
 <p align="center">
